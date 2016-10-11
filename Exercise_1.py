@@ -1,32 +1,78 @@
 import numpy as np
 
-n = input('n = ')
-print(n)
+def get_evals(str): #define a function to generate the eigenvali=ues of a matrix
+    evals, evecs = np.linalg.eig(M)
+    print(sorted(evals))
+    return
 
-n = int(n)
-M = np.ndarray((n, n))
+initialinput = input('Linear Polyene (1), Cyclic Polyene (2), Platonic Solid (3), or Buckminsterfullerene (4)? ')
 
-a = 0
-b = -1
-i = 0
-j = 0
+if int(initialinput) == 1: #for linear polyenes
+	n = input('n = ')
+	print(n)
 
-while j < n:
-    if j == i:
-        M[i,j] = a
-    elif j == i + 1 or j == i - 1:
-        M[i,j] = b
-    else:
-        M[i,j] = 0.00
-    if i == n - 1:
-        i = 0
-        j = j + 1
-    else:
-        i = i + 1
-    
+	n = int(n)
+	M = np.ndarray((n, n))
+
+	a = 0
+	b = -1
+	i = 0
+	j = 0
+
+	while j < n:
+		if j == i:
+			M[i,j] = a
+		elif j == i + 1 or j == i - 1:
+			M[i,j] = b
+		else:
+			M[i,j] = 0.00
+		if i == n - 1:
+			i = 0
+			j = j + 1
+		else:
+			i = i + 1
+
+	print(M)
+
+	get_evals(M)
+
+if int(initialinput) == 2: # for cyclic polyenes
+	n = input('n = ')
+	print(n)
+
+	n = int(n)
+	M = np.ndarray((n, n))
+
+	a = 0
+	b = -1
+	i = 0
+	j = 0
+	
+	M[0,n - 1] = b
+	M[n - 1,0] = b
+
+	while j < n:
+		if j == i:
+			M[i,j] = a
+		elif j == i + 1 or j == i - 1:
+			M[i,j] = b
+		else:
+			M[i,j] = 0.00
+		if i == n - 1:
+			i = 0
+			j = j + 1
+		else:
+			i = i + 1
+
+	print(M)
+
+	eval_string = get_evals(M)
+	print(eval_string)
 
 
-print(M)
+
+
+
 
 #M = np.ndarray((3, 3)) # A 3x3 matrix
 #M[0,0] = 5.00
@@ -39,13 +85,6 @@ print(M)
 #M[2,1] = 5.00
 #M[2,2] = 5.00
 #print(M)
-
-def get_evals(str):
-    evals, evecs = np.linalg.eig(M)
-    print(sorted(evals))
-    return
-
-get_evals(M)
 
 #evals, evecs = np.linalg.eig(M)
 #print(sorted(evals))
